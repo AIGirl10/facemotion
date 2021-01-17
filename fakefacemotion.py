@@ -4,10 +4,19 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from skimage.transform import resize
 import warnings
+import sys 
+
 warnings.filterwarnings("ignore")
 
-source_image = imageio.imread('sneha.png')
-reader = imageio.get_reader('04.mp4')
+imagename = sys.argv[1]
+#print(imagename)
+videoname = sys.argv[2]
+
+# Put image name here
+source_image = imageio.imread(imagename)
+
+# Put video name here
+reader = imageio.get_reader(videoname)
 
 
 #Resize image and video to 256x256
@@ -52,5 +61,4 @@ from skimage import img_as_ubyte
 predictions = make_animation(source_image, driving_video, generator, kp_detector, relative=True)
 
 #save resulting video
-imageio.mimsave('generated.mp4', [img_as_ubyte(frame) for frame in predictions])
-#video can be downloaded from /content folder
+imageio.mimsave('finaloutput/output.mp4', [img_as_ubyte(frame) for frame in predictions])
